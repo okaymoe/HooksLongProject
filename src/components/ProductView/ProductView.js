@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductListItem from "../ProductListItem";
 import ProductDetails from "../ProductDetails";
 import './ProductView.css'
 
 
 function ProductView({ products }) {
-    const [sideOpen, setSideOpen] = useState(true)
-
+    const [sideOpen, setSideOpen] = useState(true);
+    const [selectedProduct, setSelectedProduct] = useState("");
     // TODO: Replace with state variable
 
+    useEffect(() => {
+        console.log(selectedProduct)
+    }, [selectedProduct]);
     return (
         <div className="product-view">
             <div className="product-main-area">
@@ -16,9 +19,12 @@ function ProductView({ products }) {
                 <div className="product-list">
                     {products.map(item =>
                         <ProductListItem
+                            isSelected={selectedProduct == item ? true : false}
                             key={item.id}
                             product={item}
-                            onClick={() => console.log('SELECT PRODUCT', item)}
+                            onClick={() => {
+                                setSelectedProduct(item)
+                            }}
                         />
                     )}
                 </div>
@@ -30,7 +36,7 @@ function ProductView({ products }) {
                         {sideOpen ? '>' : '<'}
                     </div>
                 </div>
-                <ProductDetails visible={sideOpen} />
+                <ProductDetails visible={sideOpen} product={selectedProduct} />
             </div>
         </div>
     );
