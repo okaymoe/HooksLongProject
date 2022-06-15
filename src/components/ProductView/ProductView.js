@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductListItem from "../ProductListItem";
 import ProductDetails from "../ProductDetails";
 import './ProductView.css'
 
+
 function ProductView({ products }) {
+    const [sideOpen, setSideOpen] = useState(true)
 
     // TODO: Replace with state variable
-    const sideOpen = true;
 
     return (
         <div className="product-view">
@@ -25,7 +26,7 @@ function ProductView({ products }) {
             <div className="product-side-panel">
                 <div className="product-side-panel-toggle-wrapper">
                     <div className="product-side-panel-toggle"
-                         onClick={() => console.log('TOGGLE SIDE PANEL')}>
+                        onClick={() => setSideOpen(!sideOpen)}>
                         {sideOpen ? '>' : '<'}
                     </div>
                 </div>
