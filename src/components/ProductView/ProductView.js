@@ -7,11 +7,14 @@ import './ProductView.css'
 function ProductView({ products }) {
     const [sideOpen, setSideOpen] = useState(true);
     const [selectedProduct, setSelectedProduct] = useState("");
-    // TODO: Replace with state variable
 
     useEffect(() => {
-        console.log(selectedProduct)
+        setSideOpen(true)
     }, [selectedProduct]);
+
+    useEffect(() => {
+        setSelectedProduct();
+    }, [sideOpen]);
     return (
         <div className="product-view">
             <div className="product-main-area">
