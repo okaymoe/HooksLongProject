@@ -8,13 +8,19 @@ function ProductView({ products }) {
     const [sideOpen, setSideOpen] = useState(true);
     const [selectedProduct, setSelectedProduct] = useState("");
 
+  
     useEffect(() => {
-        setSideOpen(true)
+        if (selectedProduct) {
+            setSideOpen(true);
+        }
     }, [selectedProduct]);
 
     useEffect(() => {
-        setSelectedProduct();
+        if (!sideOpen) {
+            setSelectedProduct();
+        }
     }, [sideOpen]);
+    
     return (
         <div className="product-view">
             <div className="product-main-area">
